@@ -19,16 +19,27 @@ if($result === FALSE) {
 }
 curl_close($ch);
 
-preg_match_all('!<h2>(.*?)</h2>!', $result, $match);
-$item["p_no"] = $match[1];
-echo "넘버 : " . $item["p_no"][0];
+$result = preg_replace("/\s|/", '', $result);
+$result = str_replace("<", "&lt;", $result);
+$result = str_replace(">", "&gt;", $result);
+
+$p_noresult = $result;
+$p_name_result = $result;
+
+$p_noresult = strstr($p_noresult, "pars_no");
+$p_noresult = strstr($p_noresult, "dds");
+$p_noresult = strstr($p_noresult, '"');
+$p_no_Index = strpos($p_noresult, 'name');
+$p_noresult = substr($p_noresult, 1, $p_no_Index-2);
+
+$p_name_result = strstr($p_name_result, "pars_namu");
+$p_name_result = strstr($p_name_result, "dds");
+$p_name_result = strstr($p_name_result, '"');
+$p_name_index = strpos($p_name_result, 'name');
+$p_name_result = substr($p_name_result, 1, $p_name_index-2);
 
 
-
-
-
-
-
+echo $p_noresult , $p_name_result;
 ?>
 
 <!-- echo '<xml version="1.0">';

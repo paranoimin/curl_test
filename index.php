@@ -60,6 +60,7 @@ if($result === FALSE) {
 }
 curl_close($ch);
 
+
 preg_match_all("!<loc>(.*?)<\/loc>!", $result, $match);
 $item["urls"] = $match[1];
 //$itemLength = count($item["urls"]);
